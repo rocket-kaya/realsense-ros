@@ -2060,6 +2060,8 @@ rclcpp::Time BaseRealSenseNode::frameSystemTimeSec(rs2::frame frame)
         double elapsed_camera_ns = (/*ms*/ frame.get_timestamp() - /*ms*/ _camera_time_base) * 1e6;
 #if defined(GALACTIC) || defined(ROLLING)
         rclcpp::Duration elapsed_camera(rclcpp::Duration::from_nanoseconds(elapsed_camera_ns));
+#elif ROLLING
+        rclcpp::Duration elapsed_camera(rclcpp::Duration::from_nanoseconds(elapsed_camera_ns));
 #else
         rclcpp::Duration elapsed_camera(elapsed_camera_ns);
 #endif        
